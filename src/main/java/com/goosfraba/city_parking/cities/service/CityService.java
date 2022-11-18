@@ -9,6 +9,9 @@ import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CityService {
 
@@ -46,5 +49,9 @@ public class CityService {
         return CityMapper.toCityDto(
                 cityRepository.findByCode(cityCode).orElseThrow(
                         () -> new ResourceNotFoundException("There is no city with this code")));
+    }
+
+    public List<CityDto> getAllCities() {
+        return cityRepository.findAll().stream().map(CityMapper::toCityDto).collect(Collectors.toList());
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/city")
 public class CityController {
@@ -33,6 +35,11 @@ public class CityController {
     @GetMapping
     public ResponseEntity<CityDto> getCityByCode(@RequestParam  String cityCode) {
         return new ResponseEntity<>(cityService.getCityByCode(cityCode), HttpStatus.OK);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<CityDto>> getAllCities() {
+        return new ResponseEntity<>(cityService.getAllCities(), HttpStatus.OK);
     }
 
 
