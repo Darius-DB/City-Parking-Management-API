@@ -2,10 +2,7 @@ package com.goosfraba.city_parking.cities.model;
 
 import com.goosfraba.city_parking.parking_facilities.model.ParkingFacility;
 import com.goosfraba.city_parking.vehicles.model.Vehicle;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity(name = "cities")
 public class City {
 
