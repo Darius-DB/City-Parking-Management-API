@@ -1,6 +1,7 @@
 package com.goosfraba.city_parking.cities.dto;
 
 import com.goosfraba.city_parking.cities.model.City;
+import com.goosfraba.city_parking.utils.InputFormatter;
 
 public class CityMapper {
 
@@ -13,9 +14,13 @@ public class CityMapper {
     }
 
     public static City toCity(CityDto cityDto) {
+
+        String formattedCityName = InputFormatter.formatCityName(cityDto.getName());
+        String formattedCityCode = InputFormatter.formatCityCode(cityDto.getCode());
+
         return City.builder()
-                .name(cityDto.getName())
-                .code(cityDto.getName().substring(0, 3).toUpperCase())
+                .name(formattedCityName)
+                .code(formattedCityCode)
                 .build();
 
     }
