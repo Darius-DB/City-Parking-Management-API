@@ -36,4 +36,15 @@ public class CityService {
                 cityRepository.findById(id).orElseThrow(
                         () -> new ResourceNotFoundException("There is no city with this id")));
     }
+
+    public CityDto getCityByCode(String cityCode) {
+
+        if (cityCode.length() != 3) {
+            throw new IllegalArgumentException("City codes must be 3 letters long");
+        }
+
+        return CityMapper.toCityDto(
+                cityRepository.findByCode(cityCode).orElseThrow(
+                        () -> new ResourceNotFoundException("There is no city with this code")));
+    }
 }
