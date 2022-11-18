@@ -5,6 +5,7 @@ import com.goosfraba.city_parking.cities.dto.CityMapper;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.CityAlreadyExistsException;
+import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,11 @@ public class CityService {
         cityRepository.save(cityToSave);
 
         return CityMapper.toCityDto(cityToSave);
+    }
+
+    public CityDto getCityById(Integer id) {
+        return  CityMapper.toCityDto(
+                cityRepository.findById(id).orElseThrow(
+                        () -> new ResourceNotFoundException("There is no city with this id")));
     }
 }
