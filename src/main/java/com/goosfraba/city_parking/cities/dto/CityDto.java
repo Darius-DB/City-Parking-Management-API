@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
@@ -14,9 +15,9 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class CityDto {
 
-    private String id;
+    private Integer id;
 
-    @NotBlank @Max(256)
+    @NotBlank @Length(max = 256)
     private String name;
 
     private String code;

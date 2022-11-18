@@ -17,7 +17,7 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Integer id;
 
     @Column(length = 256, unique = true, nullable = false)
     private String name;
