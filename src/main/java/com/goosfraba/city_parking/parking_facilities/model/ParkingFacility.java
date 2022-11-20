@@ -1,13 +1,11 @@
 package com.goosfraba.city_parking.parking_facilities.model;
 
 import com.goosfraba.city_parking.cities.model.City;
-import com.goosfraba.city_parking.vehicles.model.Vehicle;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor

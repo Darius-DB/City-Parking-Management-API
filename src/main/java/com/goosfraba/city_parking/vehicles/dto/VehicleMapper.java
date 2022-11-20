@@ -1,7 +1,5 @@
 package com.goosfraba.city_parking.vehicles.dto;
 
-import com.goosfraba.city_parking.parking_facilities.dto.ParkingFacilityDto;
-import com.goosfraba.city_parking.parking_facilities.model.ParkingFacility;
 import com.goosfraba.city_parking.vehicles.model.Vehicle;
 
 public class VehicleMapper {

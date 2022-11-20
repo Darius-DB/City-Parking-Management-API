@@ -1,6 +1,5 @@
 package com.goosfraba.city_parking.parking_facilities.controller;
 
-import com.goosfraba.city_parking.cities.dto.CityDto;
 import com.goosfraba.city_parking.parking_facilities.dto.ParkingFacilityDto;
 import com.goosfraba.city_parking.parking_facilities.service.ParkingFacilityService;
 import org.springframework.http.HttpStatus;

@@ -1,17 +1,13 @@
 package com.goosfraba.city_parking.vehicles.controller;
 
-import com.goosfraba.city_parking.cities.dto.CityDto;
-import com.goosfraba.city_parking.parking_facilities.dto.ParkingFacilityDto;
 import com.goosfraba.city_parking.vehicles.dto.VehicleDto;
 import com.goosfraba.city_parking.vehicles.service.VehicleService;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

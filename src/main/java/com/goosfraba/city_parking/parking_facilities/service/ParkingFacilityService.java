@@ -1,7 +1,5 @@
 package com.goosfraba.city_parking.parking_facilities.service;
 
-import com.goosfraba.city_parking.cities.dto.CityDto;
-import com.goosfraba.city_parking.cities.dto.CityMapper;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;

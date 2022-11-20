@@ -1,11 +1,8 @@
 package com.goosfraba.city_parking.cities.model;
 
-import com.goosfraba.city_parking.vehicles.model.Vehicle;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
