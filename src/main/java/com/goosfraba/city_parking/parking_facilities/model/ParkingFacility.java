@@ -3,6 +3,8 @@ package com.goosfraba.city_parking.parking_facilities.model;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.vehicles.model.Vehicle;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 @Entity(name = "parking_facilities")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ParkingFacility {
@@ -29,8 +32,9 @@ public class ParkingFacility {
     @Column(name = "available_capacity")
     protected  Integer availableCapacity = 0;
 
-    @ManyToOne
-    @JoinColumn(name="city_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "city_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected City city;
 
     @OneToMany(mappedBy="parkingFacility")

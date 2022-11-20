@@ -4,7 +4,7 @@ import com.goosfraba.city_parking.cities.dto.CityDto;
 import com.goosfraba.city_parking.cities.dto.CityMapper;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
-import com.goosfraba.city_parking.exceptions.CityAlreadyExistsException;
+import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;
 import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class CityService {
         City cityToSave = CityMapper.toCity(cityDto);
 
         if (cityRepository.findByCode(cityToSave.getCode()).isPresent()) {
-            throw new CityAlreadyExistsException(cityToSave.getName() + " already exists in our database");
+            throw new ResourceAlreadyPresentException(cityToSave.getName() + " already exists in our database");
         }
 
         cityRepository.save(cityToSave);

@@ -16,7 +16,7 @@ public class CityMapper {
     public static City toCity(CityDto cityDto) {
 
         String formattedCityName = InputFormatter.formatCityName(cityDto.getName());
-        String formattedCityCode = InputFormatter.formatCityCode(cityDto.getCode());
+        String formattedCityCode = InputFormatter.formatCityCode(cityDto.getName());
 
         return City.builder()
                 .name(formattedCityName)

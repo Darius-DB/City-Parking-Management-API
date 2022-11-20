@@ -1,6 +1,5 @@
 package com.goosfraba.city_parking.parking_facilities.dto;
 
-import com.goosfraba.city_parking.cities.dto.CityDto;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.parking_facilities.model.ParkingFacility;
 import com.goosfraba.city_parking.utils.InputFormatter;
@@ -23,7 +22,6 @@ public class ParkingFacilityMapper {
                 .name(facilityDto.getName())
                 .capacity(facilityDto.getCapacity())
                 .availableCapacity(facilityDto.getAvailableCapacity())
-                .city(new City(InputFormatter.formatCityName(facilityDto.getCity())))
                 .build();
 
     }
