@@ -33,7 +33,7 @@ public class CityController {
     }
 
     @GetMapping
-    public ResponseEntity<CityDto> getCityByCode(@RequestParam  String cityCode) {
+    public ResponseEntity<CityDto> getCityByCode(@RequestParam   String cityCode) {
         return new ResponseEntity<>(cityService.getCityByCode(cityCode), HttpStatus.OK);
     }
 

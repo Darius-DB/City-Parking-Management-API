@@ -4,6 +4,8 @@ import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;
 import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
+import com.goosfraba.city_parking.parking_facilities.dto.ParkingFacilityDto;
+import com.goosfraba.city_parking.parking_facilities.dto.ParkingFacilityMapper;
 import com.goosfraba.city_parking.parking_facilities.model.BikeRack;
 import com.goosfraba.city_parking.parking_facilities.model.CarPark;
 import com.goosfraba.city_parking.utils.InputFormatter;
@@ -17,6 +19,10 @@ import com.goosfraba.city_parking.vehicles.repository.CarRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VehicleService {
@@ -55,5 +61,17 @@ public class VehicleService {
         }
 
         return VehicleMapper.toVehicleDto(vehicleToSave);
+    }
+
+    public List<VehicleDto> getVehiclesByCityCode(String cityCode) {
+        List<VehicleDto> vehicles = new ArrayList<>();
+        String formattedCityCode = InputFormatter.formatCityCode(cityCode);
+
+        vehicles.addAll(bikeRepository.findAllByCityCode(formattedCityCode).stream().map(
+                VehicleMapper::toVehicleDto).collect(Collectors.toList()));
+        vehicles.addAll(carRepository.findAllByCityCode(formattedCityCode).stream().map(
+                VehicleMapper::toVehicleDto).collect(Collectors.toList()));
+
+        return vehicles;
     }
 }
