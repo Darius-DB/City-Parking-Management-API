@@ -1,15 +1,13 @@
 package com.goosfraba.city_parking.parking_facilities.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder

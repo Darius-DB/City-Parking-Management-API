@@ -1,5 +1,7 @@
 package com.goosfraba.city_parking.parking_facilities.service;
 
+import com.goosfraba.city_parking.cities.dto.CityDto;
+import com.goosfraba.city_parking.cities.dto.CityMapper;
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;
@@ -68,5 +70,25 @@ public class ParkingFacilityService {
         }
 
         return ParkingFacilityMapper.toFacilityDto(parkingFacilityToSave);
+    }
+
+    public ParkingFacilityDto getFacilityById(Integer id, String facilityType) {
+        ParkingFacilityDto parkingFacility = new ParkingFacilityDto();
+
+        if (facilityType.trim().equalsIgnoreCase("bike")) {
+            parkingFacility = ParkingFacilityMapper.toFacilityDto(
+                    bikeRackRepository.findById(id).orElseThrow(
+                            () -> new ResourceNotFoundException("There is no facility with this id")));
+
+        } else if (facilityType.trim().equalsIgnoreCase("car")) {
+            parkingFacility = ParkingFacilityMapper.toFacilityDto(
+                    carParkRepository.findById(id).orElseThrow(
+                            () -> new ResourceNotFoundException("There is no facility with this id")));
+        } else {
+            throw new IllegalArgumentException("We do not offer this type of facility");
+        }
+
+        return parkingFacility;
+
     }
 }
