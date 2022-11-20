@@ -18,6 +18,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ParkingFacilityService {
 
@@ -89,6 +93,19 @@ public class ParkingFacilityService {
         }
 
         return parkingFacility;
+
+    }
+
+    public List<ParkingFacilityDto> getAllFacilitiesForAGivenCity(String city) {
+        List<ParkingFacilityDto> facilities = new ArrayList<>();
+        String formattedCityName = InputFormatter.formatCityName(city);
+
+        facilities.addAll(bikeRackRepository.findAllByCityName(formattedCityName).stream().map(
+                ParkingFacilityMapper::toFacilityDto).collect(Collectors.toList()));
+        facilities.addAll(carParkRepository.findAllByCityName(formattedCityName).stream().map(
+                ParkingFacilityMapper::toFacilityDto).collect(Collectors.toList()));
+
+        return facilities;
 
     }
 }

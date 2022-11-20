@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/facility")
 public class ParkingFacilityController {
@@ -28,5 +30,10 @@ public class ParkingFacilityController {
     @GetMapping()
     public ResponseEntity<ParkingFacilityDto> getFacilityById(@RequestParam Integer id, @RequestParam String facilityType) {
         return new ResponseEntity<>(parkingFacilityService.getFacilityById(id, facilityType), HttpStatus.OK);
+    }
+
+    @GetMapping("/{city}")
+    public ResponseEntity<List<ParkingFacilityDto>> getAllParkingFacilitiesForAGivenCity(@PathVariable String city) {
+        return new ResponseEntity<>(parkingFacilityService.getAllFacilitiesForAGivenCity(city), HttpStatus.OK);
     }
 }
