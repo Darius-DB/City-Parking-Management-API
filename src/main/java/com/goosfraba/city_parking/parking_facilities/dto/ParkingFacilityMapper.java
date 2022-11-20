@@ -16,6 +16,10 @@ public class ParkingFacilityMapper {
 
     public static ParkingFacility toFacility(ParkingFacilityDto facilityDto) {
 
+        if (facilityDto.getAvailableCapacity() > facilityDto.getCapacity()) {
+            throw new IllegalArgumentException("Available capacity can't be higher than initial capacity");
+        }
+
         return ParkingFacility.builder()
                 .name(facilityDto.getName())
                 .capacity(facilityDto.getCapacity())
