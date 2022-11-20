@@ -8,6 +8,7 @@ import com.goosfraba.city_parking.parking_facilities.model.CarPark;
 import com.goosfraba.city_parking.parking_facilities.repository.BikeRackRepository;
 import com.goosfraba.city_parking.parking_facilities.repository.CarParkRepository;
 import com.goosfraba.city_parking.utils.InputFormatter;
+import com.goosfraba.city_parking.utils.Validator;
 import com.goosfraba.city_parking.vehicles.dto.VehicleDto;
 import com.goosfraba.city_parking.vehicles.dto.VehicleMapper;
 import com.goosfraba.city_parking.vehicles.model.Bike;
@@ -68,6 +69,7 @@ public class VehicleService {
 
     public List<VehicleDto> getVehiclesByCityCode(String cityCode) {
         List<VehicleDto> vehicles = new ArrayList<>();
+        Validator.checkCityCodeLength(cityCode);
         String formattedCityCode = InputFormatter.formatCityCode(cityCode);
 
         vehicles.addAll(bikeRepository.findAllByCityCode(formattedCityCode).stream().map(

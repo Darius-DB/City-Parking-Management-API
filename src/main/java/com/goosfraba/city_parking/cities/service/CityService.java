@@ -6,6 +6,7 @@ import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;
 import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
+import com.goosfraba.city_parking.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +43,7 @@ public class CityService {
 
     public CityDto getCityByCode(String cityCode) {
 
-        if (cityCode.length() != 3) {
-            throw new IllegalArgumentException("City codes must be 3 letters long");
-        }
+        Validator.checkCityCodeLength(cityCode);
 
         return CityMapper.toCityDto(
                 cityRepository.findByCode(cityCode).orElseThrow(
