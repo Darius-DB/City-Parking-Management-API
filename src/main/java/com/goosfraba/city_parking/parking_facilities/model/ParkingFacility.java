@@ -37,6 +37,4 @@ public class ParkingFacility {
     @OnDelete(action = OnDeleteAction.CASCADE)
     protected City city;
 
-    @OneToMany(mappedBy="parkingFacility")
-    private List<Vehicle> vehicles;
 }

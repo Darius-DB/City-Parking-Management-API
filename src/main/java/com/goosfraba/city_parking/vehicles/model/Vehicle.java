@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -24,11 +26,14 @@ public class Vehicle {
     @Column(name = "is_parked")
     protected Boolean isParked = false;
 
-    @ManyToOne
-    @JoinColumn(name="city_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "city_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected City city;
 
-    @ManyToOne
-    @JoinColumn(name="parking_facility_id", nullable=false)
+    
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "parking_facility_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     protected ParkingFacility parkingFacility;
 }

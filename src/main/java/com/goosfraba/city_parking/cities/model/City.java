@@ -25,8 +25,6 @@ public class City {
     @Column(length = 4, nullable = false, unique = true)
     private String code;
 
-    @OneToMany(mappedBy="city")
-    private List<Vehicle> vehicles = new ArrayList<>();
 
 
     public City(String name) {
