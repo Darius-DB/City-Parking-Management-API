@@ -35,4 +35,13 @@ public class VehicleController {
     public ResponseEntity<List<VehicleDto>> getVehiclesByCityCode(@PathVariable  String cityCode) {
         return new ResponseEntity<>(vehicleService.getVehiclesByCityCode(cityCode), HttpStatus.OK);
     }
+
+    @GetMapping("/park/{vehicleType}/{vehicleId}/{facilityName}")
+    public ResponseEntity<String> parkVehicle(
+            @PathVariable String vehicleType,
+            @PathVariable Integer vehicleId,
+            @PathVariable String facilityName
+    ) {
+        return new ResponseEntity<>(vehicleService.parkVehicle(vehicleType, vehicleId, facilityName), HttpStatus.OK);
+    }
 }
