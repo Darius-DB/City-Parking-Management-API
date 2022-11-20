@@ -11,7 +11,7 @@ public class VehicleMapper {
                 .id(vehicle.getId())
                 .isParked(vehicle.getIsParked())
                 .city(vehicle.getCity().getName())
-                .parkingFacility(vehicle.getParkingFacility().getName())
+//                .parkingFacility(vehicle.getParkingFacility().getName())
                 .build();
     }
 

@@ -30,8 +30,8 @@ public class Vehicle {
     protected City city;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "parking_facility_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parking_facility_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     protected ParkingFacility parkingFacility;
 }
