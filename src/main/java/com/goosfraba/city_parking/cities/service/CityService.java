@@ -46,8 +46,10 @@ public class CityService {
 
         Validator.checkCityCodeLength(cityCode);
 
+        String formattedCityCode = InputFormatter.formatCityCode(cityCode);
+
         return CityMapper.toCityDto(
-                cityRepository.findByCode(cityCode).orElseThrow(
+                cityRepository.findByCode(formattedCityCode).orElseThrow(
                         () -> new ResourceNotFoundException("There is no city with this code")));
     }
 
