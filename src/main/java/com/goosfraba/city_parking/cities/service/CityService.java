@@ -6,6 +6,7 @@ import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
 import com.goosfraba.city_parking.exceptions.ResourceAlreadyPresentException;
 import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
+import com.goosfraba.city_parking.utils.InputFormatter;
 import com.goosfraba.city_parking.utils.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,11 @@ public class CityService {
 
     public List<CityDto> getAllCities() {
         return cityRepository.findAll().stream().map(CityMapper::toCityDto).collect(Collectors.toList());
+    }
+
+    public City getCityByName(String cityName) {
+        return cityRepository.findByName(InputFormatter.formatCityName(cityName)).orElseThrow(
+                () -> new ResourceNotFoundException("No such city")
+        );
     }
 }

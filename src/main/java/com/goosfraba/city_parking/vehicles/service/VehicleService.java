@@ -2,6 +2,7 @@ package com.goosfraba.city_parking.vehicles.service;
 
 import com.goosfraba.city_parking.cities.model.City;
 import com.goosfraba.city_parking.cities.repository.CityRepository;
+import com.goosfraba.city_parking.cities.service.CityService;
 import com.goosfraba.city_parking.exceptions.ResourceNotFoundException;
 import com.goosfraba.city_parking.parking_facilities.model.BikeRack;
 import com.goosfraba.city_parking.parking_facilities.model.CarPark;
@@ -32,22 +33,22 @@ public class VehicleService {
     private final CityRepository cityRepository;
     private final BikeRackRepository bikeRackRepository;
     private final CarParkRepository carParkRepository;
+    private final CityService cityService;
 
     @Autowired
-    public VehicleService(CarRepository carRepository, BikeRepository bikeRepository, CityRepository cityRepository, BikeRackRepository bikeRackRepository, CarParkRepository carParkRepository) {
+    public VehicleService(CarRepository carRepository, BikeRepository bikeRepository, CityRepository cityRepository, BikeRackRepository bikeRackRepository, CarParkRepository carParkRepository, CityService cityService) {
         this.carRepository = carRepository;
         this.bikeRepository = bikeRepository;
         this.cityRepository = cityRepository;
         this.bikeRackRepository = bikeRackRepository;
         this.carParkRepository = carParkRepository;
+        this.cityService = cityService;
     }
 
 
     public VehicleDto createVehicle(VehicleDto vehicleDto, String vehicleType) {
         Vehicle vehicleToSave = VehicleMapper.toVehicle(vehicleDto);
-        City requestedCity = cityRepository.findByName(InputFormatter.formatCityName(vehicleDto.getCity())).orElseThrow(
-                () -> new ResourceNotFoundException("No such city")
-        );
+        City requestedCity = cityService.getCityByName(vehicleDto.getCity());
 
 
         if (vehicleType.trim().equalsIgnoreCase("bike")) {
