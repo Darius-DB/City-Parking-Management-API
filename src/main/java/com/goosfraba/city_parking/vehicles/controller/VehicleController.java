@@ -44,4 +44,13 @@ public class VehicleController {
     ) {
         return new ResponseEntity<>(vehicleService.parkVehicle(vehicleType, vehicleId, facilityName), HttpStatus.OK);
     }
+
+    @GetMapping("/unPark/{vehicleType}/{vehicleId}")
+    public ResponseEntity<String> unParkVehicle(
+            @PathVariable String vehicleType,
+            @PathVariable Integer vehicleId
+
+    ) {
+        return new ResponseEntity<>(vehicleService.unParkVehicle(vehicleType, vehicleId), HttpStatus.OK);
+    }
 }

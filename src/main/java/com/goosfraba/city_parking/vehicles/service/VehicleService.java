@@ -113,4 +113,29 @@ public class VehicleService {
 
         return "Vehicle with id: " + vehicleId + " was parked in " + facilityName;
     }
+
+    public String unParkVehicle(String vehicleType, Integer vehicleId) {
+        if (vehicleType.trim().equalsIgnoreCase("bike")) {
+            Bike bikeToBeUnParked = bikeRepository.findById(vehicleId).orElseThrow(
+                    () -> new ResourceNotFoundException("We do not have this vehicle"));
+
+
+            bikeToBeUnParked.setIsParked(false);
+            bikeToBeUnParked.setParkingFacility(null);
+            bikeRepository.save(bikeToBeUnParked);
+        } else if (vehicleType.trim().equalsIgnoreCase("car")) {
+            Car carToBeUnParked = carRepository.findById(vehicleId).orElseThrow(
+                    () -> new ResourceNotFoundException("We do not have this vehicle"));
+
+
+            carToBeUnParked.setIsParked(true);
+            carToBeUnParked.setParkingFacility(null);
+            carRepository.save(carToBeUnParked);
+        } else {
+            throw new IllegalArgumentException("We do not support this vehicle");
+        }
+
+        return "Vehicle with id: " + vehicleId + " was unparked";
+
+    }
 }
